@@ -1,5 +1,5 @@
 let questionDiv = document.querySelector("#questionDiv");
-let beginQuizButn = document.querySelector("#beginQuiz");
+let beginQuizBtn = document.querySelector("#beginQuiz");
 //create an array of questions and answers
 let questions = [
   {
@@ -59,7 +59,7 @@ let lastQuestion = questions.length;
 let currentQuestion = 0;
 
 //start quiz when button is clicked
-beginQuizButn.addEventListener("click", startQuiz);
+beginQuizBtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
   let q = questions[currentQuestion];
@@ -76,10 +76,71 @@ function startQuiz() {
   console.log(correctAnswer);
 
   //Hide the start quiz button
-  beginQuizButn.style.display = "none";
+  beginQuizBtn.style.display = "none";
 
   //render question and answer buttons
   questionDiv.innerHTML = `<p>${q.question}</p><br><button id=choiceA>${answer1}</button><br><button id=choiceB>${answer2}</button><br><button id=choiceC>${answer3}</button><br><button id=choiceD>${answer4}</button>`;
+  //set variables for new answer buttons
+  let choiceA = document.querySelector("#choiceA");
+  let choiceB = document.querySelector("#choiceB");
+  let choiceC = document.querySelector("#choiceC");
+  let choiceD = document.querySelector("#choiceD");
+
+  //add event listeners for new buttons
+  choiceA.addEventListener("click", function () {
+    if ("a" === correctAnswer) {
+      alert("Correct");
+      currentQuestion++;
+      showResults();
+    } else {
+      alert("Wrong");
+      currentQuestion++;
+      showResults();
+    }
+  });
+
+  choiceB.addEventListener("click", function () {
+    if ("b" === correctAnswer) {
+      alert("Correct");
+      currentQuestion++;
+      showResults();
+    } else {
+      alert("Wrong");
+      currentQuestion++;
+      showResults();
+    }
+  });
+
+  choiceC.addEventListener("click", function () {
+    if ("c" === correctAnswer) {
+      alert("Correct");
+      currentQuestion++;
+      showResults();
+    } else {
+      alert("Wrong");
+      currentQuestion++;
+      showResults();
+    }
+  });
+
+  choiceD.addEventListener("click", function () {
+    if ("d" === correctAnswer) {
+      alert("Correct");
+      currentQuestion++;
+      showResults();
+    } else {
+      alert("Wrong");
+      currentQuestion++;
+      showResults();
+    }
+  });
 }
 
-function showResults() {}
+//checks if all questions have been answered, if yes then show results. If not, rerun startQuiz() with next question.
+function showResults() {
+  if (currentQuestion > lastQuestion - 1) {
+    alert("Done");
+  } else {
+    startQuiz();
+  }
+}
