@@ -1,5 +1,8 @@
+//set some html selectors
 let questionDiv = document.querySelector("#questionDiv");
 let beginQuizBtn = document.querySelector("#beginQuiz");
+let timerEl = document.querySelector("#timer");
+
 //create an array of questions and answers
 let questions = [
   {
@@ -53,13 +56,23 @@ let questions = [
     correctAnswer: "a",
   },
 ];
-//variable to store current question
+
+//variables to store current question
 let q = questions.question;
 let lastQuestion = questions.length;
 let currentQuestion = 0;
 
+//set timer variables
+let startTime = 75;
+let timeElapsed = 0;
+
+//set score variable
+let finalScore = 0;
+let initials = "";
+
 //start quiz when button is clicked
 beginQuizBtn.addEventListener("click", startQuiz);
+beginQuizBtn.addEventListener("click", startTimer);
 
 function startQuiz() {
   let q = questions[currentQuestion];
@@ -68,12 +81,6 @@ function startQuiz() {
   let answer3 = q.answers.c;
   let answer4 = q.answers.d;
   let correctAnswer = q.correctAnswer;
-
-  console.log(answer1);
-  console.log(answer2);
-  console.log(answer3);
-  console.log(answer4);
-  console.log(correctAnswer);
 
   //Hide the start quiz button
   beginQuizBtn.style.display = "none";
@@ -95,6 +102,7 @@ function startQuiz() {
     } else {
       alert("Wrong");
       currentQuestion++;
+      timeElapsed = timeElapsed + 10;
       showResults();
     }
   });
@@ -107,6 +115,7 @@ function startQuiz() {
     } else {
       alert("Wrong");
       currentQuestion++;
+      timeElapsed = timeElapsed + 10;
       showResults();
     }
   });
@@ -119,6 +128,7 @@ function startQuiz() {
     } else {
       alert("Wrong");
       currentQuestion++;
+      timeElapsed = timeElapsed + 10;
       showResults();
     }
   });
@@ -131,6 +141,7 @@ function startQuiz() {
     } else {
       alert("Wrong");
       currentQuestion++;
+      timeElapsed = timeElapsed + 10;
       showResults();
     }
   });
@@ -139,8 +150,32 @@ function startQuiz() {
 //checks if all questions have been answered, if yes then show results. If not, rerun startQuiz() with next question.
 function showResults() {
   if (currentQuestion > lastQuestion - 1) {
-    alert("Done");
+    alert("All done! Wasn't that easy?");
+    finalScore = startTime - timeElapsed;
+    localStorage.setItem("score", finalScore);
+    initials = prompt("Enter initials.");
+    localStorage.setItem("initials", initials);
+    location.href = "./highscores.html";
   } else {
     startQuiz();
   }
+}
+
+//starts timer when beginQuizBtn is clicked
+function startTimer() {
+  let timer = setInterval(function () {
+    timeElapsed++;
+    timerEl.textContent = "Timer: " + (startTime - timeElapsed);
+
+    //when time runs out, stop counter, alert, and send to high score page
+    if (timeElapsed >= startTime) {
+      clearInterval(timer);
+      alert("Time is up!");
+      finalScore = 0;
+      localStorage.setItem("score", finalScore);
+      initials = prompt("Enter initials.");
+      localStorage.setItem("initials", initials);
+      location.href = "./highscores.html";
+    }
+  }, 1000);
 }
