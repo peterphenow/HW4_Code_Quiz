@@ -86,7 +86,7 @@ function startQuiz() {
   beginQuizBtn.style.display = "none";
 
   //render question and answer buttons
-  questionDiv.innerHTML = `<p>${q.question}</p><br><button id=choiceA>${answer1}</button><br><button id=choiceB>${answer2}</button><br><button id=choiceC>${answer3}</button><br><button id=choiceD>${answer4}</button>`;
+  questionDiv.innerHTML = `<p class='questions'>${q.question}</p><br><button id=choiceA class='btn btn-primary answer-buttons'>${answer1}</button><br><button id=choiceB class='btn btn-primary answer-buttons'>${answer2}</button><br><button id=choiceC class='btn btn-primary answer-buttons'>${answer3}</button><br><button id=choiceD class='btn btn-primary answer-buttons'>${answer4}</button>`;
   //set variables for new answer buttons
   let choiceA = document.querySelector("#choiceA");
   let choiceB = document.querySelector("#choiceB");

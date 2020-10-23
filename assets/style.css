@@ -1,0 +1,15 @@
+.header {
+  color: rgb(51, 51, 167);
+  font-weight: bold;
+}
+
+.questions {
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.answer-buttons {
+  margin: 2px;
+  width: 300px;
+}
