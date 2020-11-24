@@ -17,3 +17,7 @@ This assignment really pushed me with the use of JavaScript and using local stor
 <img src="./assets/img/begin_quiz.png" alt="beginning of quiz" width="400" height="250">&nbsp;&nbsp;<img src="./assets/img/first_question.png" alt="first question" width="400" height="250">
 
 <img src="./assets/img/high_scores.png" alt="beginning of quiz" width="400" height="250">
+
+### **License**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
